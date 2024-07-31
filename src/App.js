@@ -11,6 +11,7 @@ function App() {
         <Route path="/login" element={<FormLogin />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/" element={<TelaInicial />} />
+        <Route path="/alterar" element={<TelaInicial />} />
       </Routes>
     </Router>
   );

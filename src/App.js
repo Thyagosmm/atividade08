@@ -1,20 +1,20 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import FormLogin from './pages/Login';
-import CadastroUsuario from './pages/CadastroUsuario';
-import TelaInicial from './pages/TelaInicial';
-import Alterar from './pages/Alterar';
-import CadastroCliente from './pages/CadastroCliente';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./components/Login";
+import CadastroUsuario from "./components/CadastroUsuario";
+import Home from "./components/Home";
+import Alterar from "./components/Alterar";
+import CadastroContato from "./components/CadastroContato";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<FormLogin />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/cadastrar" element={<CadastroUsuario />} />
-        <Route path="/" element={<TelaInicial />} />
-        <Route path="/alterar" element={<Alterar />} />
-        <Route path="/cadastrarcliente" element={<CadastroCliente />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/alterar/:id" element={<Alterar />} />
+        <Route path="/cadastrarcontato" element={<CadastroContato />} />
       </Routes>
     </Router>
   );

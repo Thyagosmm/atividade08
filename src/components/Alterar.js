@@ -1,24 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { CButton, CContainer, CForm, CFormInput, CFormLabel } from '@coreui/react';
-import logo from '../logo.png';
-import './Alterar.css';
+import logo from '../assets/logo.png';
+import '../styles/Alterar.css';
+import api from '../api';
 
 export default function Alterar() {
-  const [nome, setNome] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [telefone, setTelefone] = React.useState('');
+  const { id } = useParams();
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const navigate = useNavigate();
 
-  function handleAlterar() {
-    // Lógica para alterar o usuário
-    console.log('Nome:', nome);
-    console.log('Email:', email);
-    console.log('Telefone:', telefone);
-  }
+  useEffect(() => {
+    const fetchContato = async () => {
+      try {
+        const response = await api.get(`/contatos/${id}`);
+        const contato = response.data;
+        setNome(contato.nome);
+        setEmail(contato.email);
+        setTelefone(contato.telefone);
+      } catch (error) {
+        console.error('Erro ao buscar contato:', error);
+      }
+    };
 
-  function handleExcluir() {
-    // Lógica para excluir o usuário
-    console.log('Excluir usuário');
-  }
+    fetchContato();
+  }, [id]);
+
+  const handleAlterar = async () => {
+    try {
+      await api.put(`/contatos/${id}`, { nome, email, telefone });
+      console.log('Contato alterado com sucesso');
+      navigate('/home');
+    } catch (error) {
+      console.error('Erro ao alterar o contato:', error);
+    }
+  };
+
+  const handleExcluir = async () => {
+    try {
+      await api.delete(`/contatos/${id}`);
+      console.log('Contato excluído com sucesso');
+      navigate('/home');
+    } catch (error) {
+      console.error('Erro ao excluir o contato:', error);
+    }
+  };
 
   return (
     <div className="alterar-container">
@@ -35,7 +63,7 @@ export default function Alterar() {
                 <CFormInput
                   className="input-field"
                   type="text"
-                  placeholder="Digite seu nome..."
+                  placeholder="Digite o nome..."
                   value={nome}
                   onChange={e => setNome(e.target.value)}
                 />
@@ -45,7 +73,7 @@ export default function Alterar() {
                 <CFormInput
                   className="input-field"
                   type="email"
-                  placeholder="Digite seu e-mail..."
+                  placeholder="Digite o e-mail..."
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                 />
@@ -55,7 +83,7 @@ export default function Alterar() {
                 <CFormInput
                   className="input-field"
                   type="tel"
-                  placeholder="Digite seu telefone..."
+                  placeholder="Digite o telefone..."
                   value={telefone}
                   onChange={e => setTelefone(e.target.value)}
                 />

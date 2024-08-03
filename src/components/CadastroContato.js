@@ -1,26 +1,35 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CButton, CContainer, CForm, CFormInput, CFormLabel } from '@coreui/react';
-import logo from '../logo.png';
-import './CadastroCliente.css';
+import api from '../api';
+import logo from '../assets/logo.png';
+import '../styles/CadastroContato.css';
 
-export default function CadastroCliente() {
+export default function CadastroContato() {
   const [nome, setNome] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [telefone, setTelefone] = React.useState('');
+  const navigate = useNavigate();
 
-  function handleSalvar() {
-    // Lógica para salvar o cliente
-    console.log('Nome:', nome);
-    console.log('Email:', email);
-    console.log('Telefone:', telefone);
+  async function handleCadastro() {
+    try {
+      const response = await api.post('/contatos', { nome, email, telefone });
+      console.log('Contato cadastrado:', response.data);
+      setNome('');
+      setEmail('');
+      setTelefone('');
+      navigate('/home');
+    } catch (error) {
+      console.error('Erro ao cadastrar o contato:', error);
+    }
   }
 
   return (
-    <div className="cadastro-cliente-container">
-      <div className="cadastro-cliente-left">
-        <img src={logo} alt="Marca" className="cadastro-cliente-logo" />
+    <div className="cadastro-contato-container">
+      <div className="cadastro-contato-left">
+        <img src={logo} alt="Marca" className="cadastro-contato-logo" />
       </div>
-      <div className="cadastro-cliente-right">
+      <div className="cadastro-contato-right">
         <CContainer className="text-center">
           <div className="form-container">
             <h2>CADASTRO</h2>
@@ -30,7 +39,7 @@ export default function CadastroCliente() {
                 <CFormInput
                   className="input-field"
                   type="text"
-                  placeholder="Digite seu nome..."
+                  placeholder="Digite o nome..."
                   value={nome}
                   onChange={e => setNome(e.target.value)}
                 />
@@ -40,7 +49,7 @@ export default function CadastroCliente() {
                 <CFormInput
                   className="input-field"
                   type="email"
-                  placeholder="Digite seu e-mail..."
+                  placeholder="Digite o e-mail..."
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                 />
@@ -50,12 +59,12 @@ export default function CadastroCliente() {
                 <CFormInput
                   className="input-field"
                   type="tel"
-                  placeholder="Digite seu telefone..."
+                  placeholder="Digite o telefone..."
                   value={telefone}
                   onChange={e => setTelefone(e.target.value)}
                 />
               </div>
-              <CButton color="primary" className="salvar-button" onClick={handleSalvar}>Salvar</CButton>
+              <CButton color="primary" className="salvar-button" onClick={handleCadastro}>Salvar</CButton>
             </CForm>
           </div>
         </CContainer>

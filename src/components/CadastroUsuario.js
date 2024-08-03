@@ -1,16 +1,30 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CButton, CContainer, CForm, CFormInput, CFormLabel } from '@coreui/react';
-import logo from '../logo.png';
-import './Login.css';
+import logo from '../assets/logo.png';
+import api from '../api';
+import '../styles/CadastroUsuario.css';
 
-export default function FormLogin() {
+export default function Cadastro() {
+  const [nome, setNome] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [senha, setSenha] = React.useState('');
+  const navigate = useNavigate();
 
-  function handleLogin() {
-    // Lógica para autenticar o usuário
-    console.log('Email:', email);
-    console.log('Senha:', senha);
+  async function handleCadastro() {
+    try {
+      const response = await api.post('/usuarios', { nome, email, senha });
+      console.log('Usuário cadastrado:', response.data);
+      setNome('');
+      setEmail('');
+      setSenha('');
+    } catch (error) {
+      console.error('Erro ao cadastrar o usuário:', error);
+    }
+  }
+
+  function handleVoltar() {
+    navigate('/');
   }
 
   return (
@@ -21,8 +35,18 @@ export default function FormLogin() {
       <div className="login-right">
         <CContainer className="text-center">
           <div className="form-container">
-            <h2>Login</h2>
+            <h2>Cadastro de Usuário</h2>
             <CForm>
+              <div className="form-field">
+                <CFormLabel>Nome</CFormLabel>
+                <CFormInput
+                  className="input-field"
+                  type="text"
+                  placeholder="Digite seu nome..."
+                  value={nome}
+                  onChange={e => setNome(e.target.value)}
+                />
+              </div>
               <div className="form-field">
                 <CFormLabel>Email</CFormLabel>
                 <CFormInput
@@ -43,8 +67,8 @@ export default function FormLogin() {
                   onChange={e => setSenha(e.target.value)}
                 />
               </div>
-              <CButton color="primary" className="login-button" onClick={handleLogin}>Acessar</CButton>
-              <CButton color="danger" className="register-button" onClick={() => {/* lógica para cadastro */}}>Cadastre-se</CButton>
+              <CButton color="primary" className="login-button" onClick={handleCadastro}>Cadastrar</CButton>
+              <CButton color="danger" className="register-button" onClick={handleVoltar}>Voltar</CButton>
             </CForm>
           </div>
         </CContainer>

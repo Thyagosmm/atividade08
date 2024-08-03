@@ -1,9 +1,9 @@
-.alterar-container {
+.cadastro-contato-container {
   display: flex;
   height: 100vh;
 }
 
-.alterar-left, .alterar-right {
+.cadastro-contato-left, .cadastro-contato-right {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -11,18 +11,18 @@
   justify-content: center;
 }
 
-.alterar-left {
+.cadastro-contato-left {
   background-color: #f7f7f7;
   padding: 2rem;
   text-align: center;
 }
 
-.alterar-logo {
+.cadastro-contato-logo {
   max-width: 200px;
   margin-bottom: 1rem;
 }
 
-.alterar-right {
+.cadastro-contato-right {
   padding: 2rem;
 }
 
@@ -30,9 +30,9 @@
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  border: 2px solid black; /* Adiciona a borda preta ao redor da caixa */
-  padding: 2rem; /* Espaçamento interno da caixa */
-  background-color: #ffffff; /* Cor de fundo da caixa */
+  border: 2px solid black;
+  padding: 2rem;
+  background-color: #ffffff;
 }
 
 .form-field {
@@ -43,16 +43,9 @@
   width: 100%;
 }
 
-.alterar-button {
+.salvar-button {
   color: white;
   width: 100%;
   margin-top: 1rem;
   background-color: blue;
-}
-
-.excluir-button {
-  color: white;
-  width: 100%;
-  margin-top: 1rem;
-  background-color: red; /* Cor vermelha */
 }

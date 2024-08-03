@@ -1,0 +1,51 @@
+.cadastro-cliente-container {
+  display: flex;
+  height: 100vh;
+}
+
+.cadastro-cliente-left, .cadastro-cliente-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cadastro-cliente-left {
+  background-color: #f7f7f7;
+  padding: 2rem;
+  text-align: center;
+}
+
+.cadastro-cliente-logo {
+  max-width: 200px;
+  margin-bottom: 1rem;
+}
+
+.cadastro-cliente-right {
+  padding: 2rem;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  border: 2px solid black; /* Adiciona a borda preta ao redor da caixa */
+  padding: 2rem; /* Espaçamento interno da caixa */
+  background-color: #ffffff; /* Cor de fundo da caixa */
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+.input-field {
+  width: 100%;
+}
+
+.salvar-button {
+  color: white;
+  width: 100%;
+  margin-top: 1rem;
+  background-color: blue;
+}

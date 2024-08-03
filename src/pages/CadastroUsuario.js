@@ -1,7 +1,7 @@
 import React from 'react';
 import { CButton, CContainer, CForm, CFormInput, CFormLabel } from '@coreui/react';
 import logo from '../logo.png';
-import './Cadastro.css';
+import './CadastroUsuario.css';
 
 export default function Cadastro() {
   const [nome, setNome] = React.useState('');

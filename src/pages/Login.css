@@ -3,7 +3,8 @@
   height: 100vh;
 }
 
-.login-left, .login-right {
+.login-left,
+.login-right {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -24,6 +25,10 @@
 
 .login-right {
   padding: 2rem;
+}
+
+.form-container h2 {
+  text-align: center;
 }
 
 .form-container {

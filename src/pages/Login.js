@@ -20,8 +20,8 @@ export default function FormLogin() {
       </div>
       <div className="login-right">
         <CContainer className="text-center">
-          <h2>Login</h2>
           <div className="form-container">
+            <h2>Login</h2>
             <CForm>
               <div className="form-field">
                 <CFormLabel>Email</CFormLabel>
